@@ -43,6 +43,19 @@ Exercise: Level 2
 Exercise: Level 3
  - Write an example for different Python data types such as Number(Integer, Float, Complex), String, Boolean, List, Tuple, Set and Dictionary.
  - Find an Euclidian distance between (2, 3) and (10, 8)
+ 
 
 '''
 
+print(type(10))
+print(type(9.8))
+print(type(3.14))
+print(type(4 - 4j))
+print(type(['Asabeneh', 'Python', 'Finland']))
+print(type('Muhammad Zeeshan Ali'))
+print(type('Mana'))
+print(type('Pakistan'))
+
+import math
+print('Euclidian distance between (2, 3) and (10, 8) is: ',math.sqrt(((10 - 2)**2) + ((8 + 3)**2))) #with math import
+print('Euclidian distance between (2, 3) and (10, 8) is: ',(((10 - 2)**2) + ((8 + 3)**2))**0.5) #without math import
