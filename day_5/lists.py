@@ -106,7 +106,7 @@ print(fruits)       # ['orange', 'mango', 'lemon']
 del fruits[1]     
 print(fruits)       # ['orange', 'lemon']
 del fruits
-print(fruits)       # This should give: NameError: name 'fruits' is not defined
+# print(fruits)       # This should give: NameError: name 'fruits' is not defined
 
 # clear
 fruits = ['banana', 'orange', 'mango', 'lemon']
@@ -257,3 +257,35 @@ ages = [19, 22, 19, 24, 20, 25, 26, 24, 25, 24]
     ['China', 'Russia', 'USA', 'Finland', 'Sweden', 'Norway', 'Denmark']. Unpack the first three countries and the rest as scandic countries.
 
 '''
+
+lst1 = [];
+lst2=list()
+print(f'List 1 {lst1} and List 2 {lst2}')
+
+list_five_items=[87,95,25,38,14,65,71,49]
+first_item = list_five_items[0]
+last_item1 = list_five_items[-1]
+last_item2 = list_five_items[len(list_five_items)-1]
+middle_item=list_five_items[len(list_five_items)//2]
+print(f'Lenght of list {list_five_items} is {len(list_five_items)}')
+print(f'First Item: {first_item}, middle item: {middle_item} & last item: {last_item1} are in the list {list_five_items}')
+
+mixed_data_types=['Zeeshan',37,5.8,'married','Islamabad']
+print(mixed_data_types)
+
+it_companies = ['Facebook', 'Google', 'Microsoft', 'Apple', 'IBM', 'Oracle', 'Amazon']
+print(it_companies)
+print(len(it_companies))
+first_company = it_companies[0]
+last_company = it_companies[len(it_companies)-1]
+middle_company=it_companies[len(it_companies)//2]
+print(f'First company: {first_company}, middle company: {middle_company} & last company: {last_company}')
+
+it_companies[0]='Ali Baba'
+print(it_companies)
+
+it_companies.append('Facebook')
+it_companies.insert((len(it_companies)//2),'Temu')
+it_companies[3]=it_companies[3].upper()
+print(it_companies)
+print([x.join('#;  ') for x in it_companies])
