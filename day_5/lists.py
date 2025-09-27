@@ -237,7 +237,9 @@ Join the following lists:
 front_end = ['HTML', 'CSS', 'JS', 'React', 'Redux']
 back_end = ['Node','Express', 'MongoDB']
 
-    After joining the lists in question 26. Copy the joined list and assign it to a variable full_stack, then insert Python and SQL after Redux.
+    After joining the lists in question 26. 
+    Copy the joined list and assign it to a variable full_stack, 
+    then insert Python and SQL after Redux.
 
 Exercises: Level 2
 
@@ -288,4 +290,73 @@ it_companies.append('Facebook')
 it_companies.insert((len(it_companies)//2),'Temu')
 it_companies[3]=it_companies[3].upper()
 print(it_companies)
-print([x.join('#;  ') for x in it_companies])
+# print([x.join('#;  ') for x in it_companies])
+print('#; '.join(it_companies))
+
+print ('IBM' in it_companies)
+
+copy_companies = it_companies.copy()
+
+it_companies.sort()
+print(it_companies)
+
+it_companies.sort(reverse=True)
+print(it_companies)
+
+print(it_companies[:3])
+
+print(it_companies[-3:])
+
+print(it_companies[(len(it_companies)//2)-1:(len(it_companies)//2)+2])
+
+it_companies.remove(it_companies[0])
+print(it_companies)
+
+it_companies.remove(it_companies[len(it_companies)//2])
+print(it_companies)
+
+it_companies.remove(it_companies[-1])
+print(it_companies)
+
+it_companies.clear()
+print(it_companies)
+
+del it_companies
+# print(it_companies)
+
+front_end = ['HTML', 'CSS', 'JS', 'React', 'Redux']
+back_end = ['Node','Express', 'MongoDB']
+full_stack = front_end+back_end
+print(full_stack)
+
+full_stack.insert(full_stack.index('Redux')+1,'Python')
+full_stack.insert(full_stack.index('Python')+1,'SQL')
+print(full_stack)
+
+ages = [19, 22, 19, 24, 20, 25, 26, 24, 25, 24]
+
+ages.sort()
+print(min(ages))
+print(max(ages))
+ages.append(min(ages))
+ages.append(max(ages))
+print(ages)
+
+middle_age = ages[len(ages)-1]
+print(middle_age/2)
+
+avg =sum(ages)/len(ages)
+print(avg)
+
+print(max(ages) - min(ages))
+
+comparision = abs(min(ages)-avg)>abs(max(ages)-avg)
+print(comparision)
+
+countries_list = ['China', 'Russia', 'USA', 'Finland', 'Sweden', 'Norway', 'Denmark']
+print(countries_list[(len(countries_list)//2):(len(countries_list)//2)+1])
+
+countries_list.insert(0,'Pakistan')
+print(countries_list)
+list_a, list_b = countries_list[:(len(countries_list)//2)],countries_list[(len(countries_list)//2):]
+print(list_a, list_b)
