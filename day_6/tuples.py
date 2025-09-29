@@ -166,3 +166,50 @@ Exercises: Level 2
 
     nordic_countries = ('Denmark', 'Finland','Iceland', 'Norway', 'Sweden')
 '''
+
+new_tpl = ()
+new_tpl1 = tuple()
+
+bro_tpl = ('Salah-u-din', 'Abdul waheed', 'Abdul Mutlab', 'Mahmood', 'Hakeem',
+               'Maj','Abdul Rehman')
+
+sis_tpl = ('Teacher', 'IR', 'Matric')
+
+siblings = bro_tpl + sis_tpl
+
+print(siblings)
+print(len(siblings))
+
+siblings_list = list(siblings)
+siblings_list.append('Father')
+siblings_list.append('Mother')
+family_members = tuple(siblings_list)
+print(family_members)
+
+sibs=family_members[1:len(family_members)-2];
+parents=family_members[-2:]
+print(sibs, parents)
+
+fruits_prod = ('banana', 'orange', 'mango', 'lemon')
+vege_prod = ('Tomato', 'Potato', 'Cabbage','Onion', 'Carrot')
+animal_prod = ('Horse','Dog','Goat','Donkey','Lion','Panther')
+
+food_stuff_tp = fruits_prod + vege_prod + animal_prod;
+print(food_stuff_tp)
+
+food_stuff_lt = list(food_stuff_tp);
+print(food_stuff_lt)
+
+middle_item = food_stuff_tp[len(food_stuff_tp)//2:(len(food_stuff_tp)//2)+1]
+middle_item1 = food_stuff_lt[(len(food_stuff_lt)//2):(len(food_stuff_lt)//2)+1]
+print(middle_item, middle_item1)
+
+lst_thr_items = food_stuff_lt[-3:]
+fst_thr_items = food_stuff_lt[:3]
+print(lst_thr_items, fst_thr_items)
+
+del food_stuff_tp
+
+nordic_countries = ('Denmark', 'Finland','Iceland', 'Norway', 'Sweden')
+print('Estonia' in nordic_countries)
+print('Iceland' in nordic_countries)
