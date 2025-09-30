@@ -305,3 +305,61 @@ Exercises: Level 3
     I am a teacher and I love to inspire and teach people. How many unique words have been used in the sentence? Use the split methods and set to get the unique words.
 
 '''
+it_companies = {'Facebook', 'Google', 'Microsoft', 'Apple', 'IBM', 'Oracle', 'Amazon'}
+A = {19, 22, 24, 20, 25, 26}
+B = {19, 22, 20, 25, 26, 24, 28, 27}
+age = [22, 19, 24, 25, 26, 24, 25, 24]
+
+print(len(it_companies))
+
+it_companies.add('Twitter')
+print(it_companies)
+
+it_companies.update(['Systems','LMKR','Affiniti'])
+
+print(it_companies)
+
+it_companies.remove('Affiniti')
+print(it_companies)
+
+# it_companies.remove('xyz')
+it_companies.discard('xyz')
+
+AB = A.union(B)
+print(AB)
+
+AA = A.copy()
+BB = B.copy()
+
+print(AA,BB)
+# AA.update(BB)
+# print(AA)
+
+A_B = A.intersection(B)
+print(A_B)
+
+print(A.issubset(B))
+
+print(A.isdisjoint(B))
+
+AAB = A.union(B)
+BBA = B.union(A)
+print(AAB, BBA)
+
+print(A.symmetric_difference(B))
+
+AAB.clear()
+print(AAB)
+# del AAB
+# print(AAB)
+
+age_set = set(age)
+print(age_set)
+print(len(age_set))
+print(len(age))
+print('List is greater' if len(age)>len(age_set) else 'Set is greater')
+
+message = 'I am a teacher and I love to inspire and teach people.'
+msg_set = set(message.split(' '))
+print(msg_set)
+print(len(msg_set))
