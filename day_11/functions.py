@@ -357,3 +357,226 @@ Exercises: Level 3
     Create a function called the most_populated_countries. It should return 10 or 20 most populated countries in descending order.
 
 '''
+
+def sum(a,b):
+    return a+b
+print("Sum: ",sum(3,4))
+print("Sum: ",sum(7,9))
+
+def circle_area(radius):
+    return 3.14*(radius*radius)
+print("Area of Circle: ",circle_area(5))
+print("Area of Circle: ",circle_area(6))
+
+
+def add_all_nums(*nums):
+    sum=0
+    for num in nums:
+        if not isinstance(num,(int, float)):
+            return f'{type(num)} cannot be added to numeric.'
+        sum+=num
+    return sum
+print(add_all_nums(2,3,'a',5,6))
+print(add_all_nums(2,3,5.5,5,6))
+print(add_all_nums(2,3,True,5,6))
+print(add_all_nums(2,3,[],5,6))
+
+def convert_celsius_to_fahrenheit(temp):
+    return round(((temp * (9/5)) + 32),2)
+print(convert_celsius_to_fahrenheit(32))
+print(convert_celsius_to_fahrenheit(67))
+print(convert_celsius_to_fahrenheit(105))
+
+def convert_temperature(temp, temp_type):
+    return f'Fahrenheit: {round(((temp * (9/5)) + 32),2)}' if temp_type=='F' else f'Celsius: {round(((temp - 32) * 5/9),2)}'
+
+print(convert_temperature(32,'C'))
+print(convert_temperature(67, 'F'))
+print(convert_temperature(105, 'C'))
+print(convert_temperature(105, 'F'))
+
+def check_season(month):
+    if month in ['Dec','Jan','Feb']:
+        return 'Winter'
+    elif month in ['Mar', 'Apr', 'May']:
+        return 'Spring'
+    elif month in ['Jun', 'Jul','Aug']:
+        return 'Summer'
+    elif month in ['Sep', 'Oct', 'Nov']:
+        return 'Autumn'
+    else: return 'Month name is invalid'
+print(check_season('Jan'))
+print(check_season('Mar'))
+print(check_season('Jun'))
+print(check_season('xyz'))
+print(check_season('Oct'))
+
+def calculate_slope(x1,y1,x2,y2):
+    if x2 == x1:
+        return "Undefined (vertical line)"
+    return (y2 - y1) / (x2 - x1)
+
+print(calculate_slope(1, 2, 3, 6))   # 2.0
+print(calculate_slope(2, 5, 2, 10))  # "Undefined (vertical line)"
+
+import cmath  # handles both real and complex numbers
+
+def solve_quadratic_eqn(a: float, b: float, c: float):
+    if a == 0:
+        return "Not a quadratic equation (a cannot be 0)."
+    
+    D = b**2 - 4*a*c  # discriminant
+    root1 = (-b + cmath.sqrt(D)) / (2*a)
+    root2 = (-b - cmath.sqrt(D)) / (2*a)
+    
+    return (root1, root2)
+
+# Examples
+print(solve_quadratic_eqn(1, -3, 2))   # (2, 1)  → two real roots
+print(solve_quadratic_eqn(1, 2, 1))    # (-1, -1) → one real double root
+print(solve_quadratic_eqn(1, 1, 1))    # complex roots
+
+def print_list(lst:any):
+    for l in lst:
+        print(f'Element: {l}')
+print_list([1, 2, 3, 4, 5])
+print_list(["A", "B", "C"])
+print_list(['Potato', 'Tomato', 'Mango', 'Milk','Meat'])
+print_list([2, 3, 7, 9, 5])
+
+def reverse_list(lst):
+    new_lst=[]
+    for i in range(len(lst)-1,-1,-1):
+        new_lst.append(lst[i])
+    return new_lst
+print(reverse_list([1, 2, 3, 4, 5])) # [5, 4, 3, 2, 1]
+print(reverse_list(["A", "B", "C"])) # ["C", "B", "A"]
+
+def capitalize_list_items(lst):
+    new_list=[]
+    for l in range(len(lst)):
+        new_list.append(lst[l].capitalize())
+    return new_list
+print(capitalize_list_items(['food_staff', 'mango','potato', 'tomato', 'mango', 'milk','meat']))
+
+def add_item(lst,item):
+    lst.append(item)
+    return lst
+
+food_staff = ['Potato', 'Tomato', 'Mango', 'Milk']
+print(add_item(food_staff, 'Meat'))     # ['Potato', 'Tomato', 'Mango', 'Milk','Meat']
+numbers = [2, 3, 7, 9]
+print(add_item(numbers, 5))      #[2, 3, 7, 9, 5]
+
+def remove_item(lst, item):
+    lst.remove(item)
+    return lst
+food_staff = ['Potato', 'Tomato', 'Mango', 'Milk']
+print(remove_item(food_staff, 'Mango'))  # ['Potato', 'Tomato', 'Milk'];
+numbers = [2, 3, 7, 9]
+print(remove_item(numbers, 3))  # [2, 7, 9]
+
+def sum_of_numbers(num:int):
+    sum=0
+    for i in range(1,num+1):
+        sum+=i
+    return sum
+print(sum_of_numbers(5))  # 15
+print(sum_of_numbers(10)) # 55
+print(sum_of_numbers(100)) # 5050
+
+def sum_of_odds(num:int):
+    sum=0
+    for i in range(1,num+1):
+        if i%2==1: sum+=i
+    return sum
+print(sum_of_odds(5))  # 15
+print(sum_of_odds(10)) # 55
+print(sum_of_odds(100)) # 5050
+
+def sum_of_even(num:int):
+    sum=0
+    for i in range(1,num+1):
+        if i%2==0: sum+=i
+    return sum
+print(sum_of_even(5))  # 15
+print(sum_of_even(10)) # 55
+print(sum_of_even(100)) # 5050
+
+def evens_and_odds(num:int):
+    e_sum=0
+    o_sum=0
+    for i in range(1,num+1):
+        e_sum += i * (i % 2 == 0)
+        o_sum += i * (i % 2 != 0)
+    return f'The number of odds are {o_sum}. The number of evens are {e_sum}.'
+print(evens_and_odds(5))  # 15
+print(evens_and_odds(10)) # 55
+print(evens_and_odds(100)) # 5050
+
+def factorial(num:int):
+    if num<=0: return 0
+    elif num==1:return 1
+    return num*factorial(num-1)
+print(factorial(5))  # 15
+print(factorial(4)) # 55
+print(factorial(10)) # 5050
+
+def is_empty(param):
+    return 'Not Empty' if len(param) else 'Empty'
+
+print(is_empty(''))
+print(is_empty([]))
+print(is_empty('1231'))
+print(is_empty([1,2,3]))
+
+# def calculate_mean():
+#     pass
+# def calculate_median(): pass
+# def calculate_mode(): pass
+# def calculate_range(): pass
+# def calculate_variance(): pass
+# def calculate_std(): pass
+
+from collections import Counter
+import math
+import builtins
+
+def calculate_mean(data: list) -> float:
+    return (builtins.sum(data) / len(data))
+
+def calculate_median(data: list) -> float:
+    sorted_data = sorted(data)
+    n = len(sorted_data)
+    mid = n // 2
+    if n % 2 == 0:  # even length
+        return (sorted_data[mid - 1] + sorted_data[mid]) / 2
+    else:  # odd length
+        return sorted_data[mid]
+
+def calculate_mode(data: list):
+    counts = Counter(data)
+    max_count = max(counts.values())
+    modes = [k for k, v in counts.items() if v == max_count]
+    if len(modes) == 1:
+        return modes[0]
+    return modes  # multiple modes possible
+
+def calculate_range(data: list) -> float:
+    return max(data) - min(data)
+
+def calculate_variance(data: list) -> float:
+    mean = calculate_mean(data)
+    return builtins.sum((x - mean) ** 2 for x in data) / len(data)
+
+def calculate_std(data: list) -> float:
+    return math.sqrt(calculate_variance(data))
+
+nums = [2, 4, 4, 4, 5, 5, 7, 9]
+
+print("Mean:", calculate_mean(nums))         # 5.0
+print("Median:", calculate_median(nums))     # 4.5
+print("Mode:", calculate_mode(nums))         # 4
+print("Range:", calculate_range(nums))       # 7
+print("Variance:", calculate_variance(nums)) # 4.0
+print("Std Dev:", calculate_std(nums))       # 2.0
