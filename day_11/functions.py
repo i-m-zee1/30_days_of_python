@@ -580,3 +580,82 @@ print("Mode:", calculate_mode(nums))         # 4
 print("Range:", calculate_range(nums))       # 7
 print("Variance:", calculate_variance(nums)) # 4.0
 print("Std Dev:", calculate_std(nums))       # 2.0
+
+def is_prime(n: int) -> bool:
+    if n <= 1:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    
+    # only check up to sqrt(n)
+    for i in range(3, int(n ** 0.5) + 1, 2):
+        if n % i == 0:
+            return False
+    return True
+
+print(is_prime(5))
+print(is_prime(10))
+print(is_prime(9))
+print(is_prime(13))
+
+def is_unique_items(lst:list) -> bool:
+    return True if len(lst)==(len(set(lst))) else False
+print(is_unique_items([1,2,3,4]))
+print(is_unique_items([1,2,3,4,6,9,1]))
+print(is_unique_items([1,2,3,2,4]))
+
+def check_type(lst:list)->str:
+    first_item_type = type(lst[0])
+    for item in lst:
+         if not isinstance(item,first_item_type):
+            return 'Not of same type'
+    return 'Same type'
+print(check_type([1,2,3,4,'a']))
+print(check_type([1,2,3,4,6,9,1,True]))
+print(check_type([1,2,3,2,4]))
+
+import keyword
+
+def is_valid_variable(var: str) -> bool:
+    return var.isidentifier() and not keyword.iskeyword(var)
+
+print(is_valid_variable("my_var"))   # True
+print(is_valid_variable("2var"))     # False (starts with digit)
+print(is_valid_variable("for"))      # False (keyword)
+print(is_valid_variable("_hidden"))  # True
+
+def read_data()->any:
+    with open("../data/countries-data.py") as f:   # 👈 go up one folder
+    # exec(f.read(), data)
+        content = f.read()
+
+    return eval(content)   # convert text → Python list
+# print(read_data())
+from collections import Counter
+
+def most_spoken_langs()->list:
+    language_counter = Counter()
+
+    for country in read_data():
+        for lang in country['languages']:
+            language_counter[lang] += 1
+
+    most_spoken = language_counter.most_common(10)
+
+    print("10 Most Spoken Languages:")
+    for lang, count in most_spoken:
+        print(lang, ":", count)
+
+most_spoken_langs()
+
+def most_populated_counts()->list:
+    # Sort countries by population (descending)
+    sorted_countries = sorted(read_data(), key=lambda x: x['population'], reverse=True)
+
+    print("10 Most Populated Countries:")
+    for country in sorted_countries[:10]:
+        print(country['name'], ":", country['population'])
+
+most_populated_counts()
