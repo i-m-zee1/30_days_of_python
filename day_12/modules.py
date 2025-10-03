@@ -114,7 +114,7 @@ Welcome Asabeneh. Enjoy  30DayOfPython challenge!
 Some useful sys commands:
 '''
 # to exit sys
-sys.exit()
+# sys.exit()
 # To know the largest integer variable it takes
 sys.maxsize
 # To know environment path
@@ -191,3 +191,167 @@ print(string.punctuation)   # !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
 from random import random, randint
 print(random())   # it doesn't take any arguments; it returns a value between 0 and 0.9999
 print(randint(5, 20)) # it returns a random integer number between [5, 20] inclusive
+
+'''
+💻 Exercises: Day 12
+Exercises: Level 1
+Writ a function which generates a six digit/character random_user_id.
+
+  print(random_user_id());
+  '1ee33d'
+
+    Modify the previous task. Declare a function named user_id_gen_by_user.
+      It doesn’t take any parameters but it takes two inputs using input(). 
+      One of the inputs is the number of characters and the second input is the 
+      number of IDs which are supposed to be generated.
+
+print(user_id_gen_by_user()) # user input: 5 5
+#output:
+#kcsy2
+#SMFYb
+#bWmeq
+#ZXOYh
+#2Rgxf
+   
+print(user_id_gen_by_user()) # 16 5
+#1GCSgPLMaBAVQZ26
+#YD7eFwNQKNs7qXaT
+#ycArC5yrRupyG00S
+#UbGxOFI7UXSWAyKN
+#dIV0SSUTgAdKwStr
+
+    Write a function named rgb_color_gen. It will generate rgb colors (3 values ranging from 0 to 255 each).
+
+print(rgb_color_gen())
+# rgb(125,244,255) - the output should be in this form
+
+Exercises: Level 2
+
+    Write a function list_of_hexa_colors which returns any number of hexadecimal colors in an array (six hexadecimal numbers written after #. Hexadecimal numeral system is made out of 16 symbols, 0-9 and first 6 letters of the alphabet, a-f. Check the task 6 for output examples).
+    Write a function list_of_rgb_colors which returns any number of RGB colors in an array.
+    Write a function generate_colors which can generate any number of hexa or rgb colors.
+
+   generate_colors('hexa', 3) # ['#a3e12f','#03ed55','#eb3d2b'] 
+   generate_colors('hexa', 1) # ['#b334ef']
+   generate_colors('rgb', 3)  # ['rgb(5, 55, 175','rgb(50, 105, 100','rgb(15, 26, 80'] 
+   generate_colors('rgb', 1)  # ['rgb(33,79, 176)']
+
+Exercises: Level 3
+
+    Call your function shuffle_list, it takes a list as a parameter and it returns a shuffled list
+    Write a function which returns an array of seven random numbers in a range of 0-9. All the numbers must be unique.
+
+'''
+from random import choice, shuffle
+
+def random_user_id()->str:
+    chars = string.ascii_letters + string.digits   # a-z, A-Z, 0-9
+    return ''.join(choice(chars) for _ in range(6))
+
+# Example usage
+print(random_user_id())
+print(random_user_id())
+print(random_user_id())
+print(random_user_id())
+print(random_user_id())
+
+def user_id_gen_by_user()->None:
+    no_chars = int(input('Enter number of characters: '))
+    no_ids = int(input('Enter number of ids: '))
+    ids_lst=''
+    chars = string.ascii_letters + string.digits   # a-z, A-Z, 0-9
+    for _ in range(no_ids):
+        print(''.join(choice(chars) for _ in range(no_chars)))
+# Example usage
+# print(user_id_gen_by_user())
+# print(user_id_gen_by_user())
+# print(user_id_gen_by_user())
+# print(user_id_gen_by_user())
+# print(user_id_gen_by_user())
+
+def rgb_color_gen()->str:
+    return f'rgb({randint(0,256)},{randint(0,256)},{randint(0,256)})'
+print(rgb_color_gen())
+print(rgb_color_gen())
+print(rgb_color_gen())
+print(rgb_color_gen())
+print(rgb_color_gen())
+
+# def list_of_hexa_colors()->list:
+#     colors_lst=[]
+#     # chars = string.hexdigits +   # a-z, A-Z, 0-9
+#     for _ in range(randint(0,10)):
+#      temp_str='#'+''.join(choice(string.hexdigits) for _ in range(6))
+#      colors_lst.append(temp_str)
+#     return colors_lst
+# print(list_of_hexa_colors())
+# print(list_of_hexa_colors())
+# print(list_of_hexa_colors())
+
+# def list_of_rgb_colors()->list:
+#     colors_lst=[]
+#     # chars = string.hexdigits +   # a-z, A-Z, 0-9
+#     for _ in range(randint(0,10)):
+#      colors_lst.append(f'rgb({randint(0,256)},{randint(0,256)},{randint(0,256)})')
+#     return colors_lst
+# print(list_of_rgb_colors())
+# print(list_of_rgb_colors())
+# print(list_of_rgb_colors())
+
+# def generate_colors(color_type, nums)->list:
+#     print(color_type)
+#     if(color_type=='rgb'):
+#         colors_lst=[]
+#         for _ in range(nums):
+#             print('tesing')
+#             colors_lst.append(f'rgb({randint(0,256)},{randint(0,256)},{randint(0,256)})')
+#     elif(color_type=='hexa'):
+#         colors_lst=[]
+#         for _ in range(nums):
+#             print('tesing')
+#             colors_lst.append('#'+''.join(choice(string.hexdigits) for _ in range(6)))
+#     else: return 'Enter valid color type'
+#     return colors_lst
+
+def generate_colors(color_type: str, nums: int) -> list:
+    colors_lst = []
+
+    if color_type == 'rgb':
+        for _ in range(nums):
+            r = randint(0, 255)
+            g = randint(0, 255)
+            b = randint(0, 255)
+            colors_lst.append(f'rgb({r},{g},{b})')
+
+    elif color_type == 'hexa':
+        for _ in range(nums):
+            color = '#' + ''.join(choice('0123456789ABCDEF') for _ in range(6))
+            colors_lst.append(color)
+
+    else:
+        return ['Enter valid color type (use "rgb" or "hexa")']
+
+    return colors_lst
+
+print(generate_colors('hexa', 3)) # ['#a3e12f','#03ed55','#eb3d2b'] 
+print(generate_colors('hexa', 1))# ['#b334ef']
+print(generate_colors('rgb', 3))  # ['rgb(5, 55, 175','rgb(50, 105, 100','rgb(15, 26, 80'] 
+print(generate_colors('rgb', 1))  # ['rgb(33,79, 176)']
+
+def shuffle_list(lst:list)->list:
+    shuffle(lst)
+    return lst
+
+print(shuffle_list([5, 55, 175,50, 105, 100,15, 26, 80]))
+print(shuffle_list(['#a3e12f','#03ed55','#eb3d2b']))
+
+def rand_nums()->list:
+    nums_lst=set()
+    while(len(nums_lst)<7):
+        nums_lst.add(randint(0,9))
+    return nums_lst
+
+print(rand_nums())
+print(rand_nums())
+print(rand_nums())
+print(rand_nums())
