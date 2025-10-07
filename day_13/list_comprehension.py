@@ -161,4 +161,29 @@ print([x for x in numbers if x<=0])
 list_of_lists =[[[1, 2, 3]], [[4, 5, 6]], [[7, 8, 9]]]
 print([num for list in list_of_lists for num in list[0]])
 
-print([(num) for _ in range(10)])
+table = [(x, 1, x**1, x**2, x**3, x**4, x**5, x**6) for x in range(11)]
+print(table)
+
+countries = [[('Finland', 'Helsinki')], [('Sweden', 'Stockholm')], [('Norway', 'Oslo')]]
+list_countries = [[num[0].upper(),num[0][:3].upper(),num[1].upper()] for list in countries for num in list]
+print(list_countries)
+
+dict_countries = [{'country':num[0].upper(),'city':num[1].upper()} for list in countries for num in list]
+print(dict_countries)
+
+names = [[('Asabeneh', 'Yetayeh')], [('David', 'Smith')], [('Donald', 'Trump')], [('Bill', 'Gates')]]
+names_str = [f'{num[0]} {num[1]}' for list in names for num in list]
+print(names_str)
+
+# Slope (m) = (y2 - y1) / (x2 - x1)
+slope = lambda x1, y1, x2, y2: (y2 - y1) / (x2 - x1)
+
+# Y-intercept (b) = y - m*x
+y_intercept = lambda x, y, m: y - m * x
+
+# Example usage:
+m = slope(2, 3, 10, 15)
+b = y_intercept(2, 3, m)
+
+print("Slope:", m)
+print("Y-intercept:", b)
