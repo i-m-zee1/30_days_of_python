@@ -288,3 +288,194 @@ Exercises: Level 3
         Sort out the ten most spoken languages by location.
         Sort out the ten most populated countries.
 '''
+
+countries = ['Estonia', 'Finland', 'Sweden', 'Denmark', 'Norway', 'Iceland']
+names = ['Asabeneh', 'Lidiya', 'Ermias', 'Abraham']
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+#Map
+squre_nums = map(lambda x:x**2, numbers)
+print("Square Nums: ",list(squre_nums))
+
+#Filter
+even_nums = filter(lambda x:x%2==0, numbers)
+print("Even Nums: ",list(even_nums))
+
+#Filter
+odd_nums = filter(lambda x:x%2!=0, numbers)
+print("Odd Nums: ",list(odd_nums))
+
+#Reduce
+single_nums = reduce(lambda x,y:int(x)+int(y), numbers)
+print("Reduce Nums: ",single_nums)
+
+
+# Higher Numbers
+def sum_nums(nums:list):
+    return sum(nums)
+
+def higher_order_function(f, lst):  # function as a parameter
+    summation = f(lst)
+    return summation
+
+result = higher_order_function(sum_numbers, [1, 2, 3, 4, 5])
+
+print("Higher Order Function: ",result)
+
+#Closures
+def add_ten():
+    ten = 10
+    def add(num):
+        return num + ten
+    return add
+
+closure_result = add_ten()
+print(closure_result(5))  # 15
+print(closure_result(10))  # 20
+
+'''This decorator function is a higher order function that takes a function as a parameter'''
+def uppercase_decorator(function):
+    def wrapper():
+        func = function()
+        make_uppercase = func.upper()
+        return make_uppercase
+    return wrapper
+@uppercase_decorator
+def greeting():
+    return 'Welcome to Python'
+print(greeting())   # WELCOME TO PYTHON
+
+numbers = [1, 2, 3, 4, 5] # iterable
+def square(x):
+    return x ** 3
+numbers_squared = map(square, numbers)
+print(list(numbers_squared))    # [1, 8, 27, 64, 125]
+
+# Lets filter only even nubers
+
+def is_even(num):
+    if num % 2 == 0:
+        return True
+    return False
+
+even_numbers = filter(is_even, numbers)
+print(list(even_numbers))
+
+numbers_str = ['1', '2', '3', '4', '5']  # iterable
+def add_two_nums(x, y):
+    return int(x) + int(y)
+
+total = reduce(add_two_nums, numbers_str)
+print(total)    # 15
+
+def print_list(lst:list)->None:
+    for l in lst:
+        print(l)
+
+print_list(countries)
+print_list(names)
+print_list(numbers)
+
+upper_case_countries = map(lambda x:x.upper(), countries)
+print(list(upper_case_countries))
+
+num_square = map(lambda x:x*x, numbers)
+print(list(num_square))
+
+upper_case_name = map(lambda x:x.upper(), names)
+print(list(upper_case_name))
+
+filter_countries = filter(lambda x:('land' in x), countries)
+print(list(filter_countries))
+
+six_char_country = filter(lambda x:len(x)==6, countries)
+print(list(six_char_country ))
+
+six_or_more_char_country = filter(lambda x:len(x)>=6, countries)
+print(list(six_or_more_char_country ))
+
+countries_start = filter(lambda x:x.startswith('E'), countries)
+print(list(countries_start ))
+
+two_list_iterators = filter(lambda x: 'LAND' in x, map(lambda x: x.upper(), countries))
+print("Two Iterators: ",list(two_list_iterators))
+
+def get_string_lists(lst:list)->list:
+    return  [l for l in lst if isinstance(l, str)]
+print("Only String: ",get_string_lists([1,2,'a','b', '2']))
+
+nums_list = [1,2,3,4,5]
+sum_num = reduce(lambda x,y:x+y,nums_list)
+print("Sum with Reduce: ",sum_num)
+
+# Use reduce to join all but the last country
+sentence = reduce(lambda acc, c: f"{acc}, {c}", countries[:-1]) + f", and {countries[-1]} are north European countries."
+
+print(sentence)
+
+import os
+data = {}
+patterns = ['land', 'ia', 'island', 'stan']
+def read_file()->list:
+    with open("../data/countries.py") as f:   # 👈 go up one folder
+        exec(f.read(), data)
+
+    return data["countries"]
+
+print(read_file())
+
+def categorize_countries(countries: list, patterns: list) -> dict:
+    grouped = {}
+    for pattern in patterns:
+        grouped[pattern] = [country for country in countries if pattern.lower() in country.lower()]
+    return grouped
+
+print("Group Countries: ",categorize_countries(read_file(), patterns))
+import string
+def countries_starting(countries: list) -> dict:
+    grouped = {}
+    for letter in string.ascii_uppercase:
+        grouped[letter] = len([country for country in countries if country.startswith(letter)])
+    return grouped
+
+print("Countries Start With: ",countries_starting(read_file()))
+
+def get_first_ten_countries(counts:list)->list:
+    return counts[:11]
+print("First 10 Countries: ",get_first_ten_countries(read_file()))
+
+def get_last_ten_countries(counts:list)->list:
+    return counts[-10:]
+print("First 10 Countries: ",get_last_ten_countries(read_file()))
+
+def read_countries_data()->list:
+    file_path = os.path.abspath("../data/countries-data.py")
+    with open(file_path, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    return eval(content)   # convert text → Python list
+
+print("Data from Countries Data: ",read_countries_data())
+
+# Sort by name
+countries_by_name = sorted(read_countries_data, key=lambda x: x['name'])
+print("Countries by Name: ",countries_by_name)
+
+# Sort by capital
+countries_by_capital = sorted(read_countries_data, key=lambda x: x['capital'])
+print("Countries by Capital: ",countries_by_capital)
+
+# Sort by population
+countries_by_population = sorted(read_countries_data, key=lambda x: x['population'])
+print("Countries by Population: ",countries_by_population)
+
+from collections import Counter
+
+all_languages = [lang for country in read_countries_data for lang in country['languages']]
+top_10_languages = Counter(all_languages).most_common(10)
+
+print("Top 10 Languages: ",top_10_languages)
+
+top_10_populated = sorted(read_countries_data, key=lambda x: x['population'], reverse=True)[:10]
+
+print("Top Populated Countries: ",[(c['name'], c['population']) for c in top_10_populated])
