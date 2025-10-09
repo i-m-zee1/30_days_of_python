@@ -132,3 +132,40 @@ print("t3 =", t3)
     date_object = 2019-12-05 00:00:00
     t3 = 86 days, 22:56:50
 '''
+
+'''
+💻 Exercises: Day 16
+
+    Get the current day, month, year, hour, minute and timestamp from datetime module
+    Format the current date using this format: "%m/%d/%Y, %H:%M:%S")
+    Today is 5 December, 2019. Change this time string to time.
+    Calculate the time difference between now and new year.
+    Calculate the time difference between 1 January 1970 and now.
+    Think, what can you use the datetime module for? Examples:
+        Time series analysis
+        To get a timestamp of any activities in an application
+        Adding posts on a blog
+'''
+
+current = datetime.now()
+print("Date: ",current.date())
+print("Day: ",current.day)
+print("Month: ",current.month)
+print("Year: ",current.year)
+print("Hour: ",current.hour)
+print("Minute: ",current.minute)
+print("Time Stamp: ",current.timestamp())
+
+print("Formate Datetime: ",current.strftime("%m/%d/%Y, %H:%M:%S"))
+
+date_object = datetime.strptime("5 December, 2019", "%d %B, %Y")
+print("Date String =", date_object)
+
+today = date(year=2025, month=10, day=9)
+new_year = date(year=2026, month=1, day=1)
+date_diff = new_year - today
+print('Date Diff: ',date_diff)
+
+t2 = datetime(year = 1970, month = 1, day = 1, hour = 0, minute = 0, second = 0)
+diff = datetime.now() - t2
+print('Time Diff: ', diff) # Time left for new year: 26 days, 23: 01: 00
