@@ -2,7 +2,9 @@
 📘 Day 18
 Regular Expressions
 
-A regular expression or RegEx is a special text string that helps to find patterns in data. A RegEx can be used to check if some pattern exists in a different data type. To use RegEx in python first we should import the RegEx module which is called re.
+A regular expression or RegEx is a special text string that helps to find patterns in data.
+A RegEx can be used to check if some pattern exists in a different data type.
+To use RegEx in python first we should import the RegEx module which is called re.
 The re Module
 
 After importing the module we can use it to detect or find patterns.
@@ -339,3 +341,44 @@ sentence = '%I $am@% a %tea@cher%, &and& I lo%#ve %tea@ching%;. There $is nothin
 print(clean_text(sentence));
 I am a teacher and I love teaching There is nothing as more rewarding as educating and emp
 '''
+paragraph = '''I love teaching. If you do not love teaching what else can you love.
+I love Python if you do not love something which can give you all the capabilities 
+to develop an application what else can you love.'''
+
+regex_pattern=r'[a-zA-Z]+'
+matches = re.findall(regex_pattern, paragraph)
+print("List of words",matches)
+# words_count = sorted(lambda lst: [(lst.count(w),w) for w in set(lst)], key=lambda x: x[1], reverse=True)
+word_count = lambda lst: sorted([(lst.count(w),w) for w in set(lst)], key=lambda x: x[0], reverse=True)
+print("Words Repetation: ",word_count(matches))
+print("Most used word: ",word_count(matches)[0][1])
+
+txt='''The position of some particles on the horizontal x-axis are -12, -4, -3 and -1 in the negative direction, 0 at origin, 4 and 8 in the positive direction. Extract these numbers from this whole text and find the distance between the two furthest particles.'''
+
+reg_exp = r'-\d+|\d+'
+digits = re.findall(reg_exp,txt)
+print("Digits: ", digits)
+distance = (int(digits[-1]))- (int(digits[0]))
+print("Distance: ",distance)
+
+import keyword
+
+is_valid_variable = lambda s: bool(re.match(r'^[A-Za-z_][A-Za-z0-9_]*$', s)) and not keyword.iskeyword(s)
+
+print(is_valid_variable('first_name')) # True
+print(is_valid_variable('first-name')) # False
+print(is_valid_variable('1first_name')) # False
+print(is_valid_variable('firstname')) # True
+
+sentence = '%I $am@% a %tea@cher%, &and& I lo%#ve %tea@ching%;. There $is nothing; &as& mo@re rewarding as educa@ting &and& @emp%o@wering peo@ple. ;I found tea@ching m%o@re interesting tha@n any other %jo@bs. %Do@es thi%s mo@tivate yo@u to be a tea@cher!?'
+# sentence_per = re.sub(r'%', '', sentence)
+# sentence_ad = re.sub('@','',sentence_per)
+# sentence_dlr= re.sub('$','',sentence_ad)
+# sentence_amp=re.sub('&','',sentence_dlr)
+exp = r'[a-zA-Z.? ]+'
+clean_text = "".join([x for x in re.findall(exp,sentence)])
+print(clean_text)
+words_count = lambda s: sorted([(s.split().count(w),w) for w in set(s.split())], key=lambda x: x[0], reverse=True) #lambda lst: sorted([(lst.count(w),w) for w in set(lst)], key=lambda x: x[0], reverse=True)
+print("Words Count: ",words_count(clean_text))
+print("Three most Frequent Words: ",list(map(lambda x:x[1],words_count(clean_text)[:3])))
+
